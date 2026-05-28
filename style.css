@@ -151,25 +151,6 @@ body {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Возвращаем фоновые картинки секций */
-.screen-bg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.panel-bg-1 {
-  background-image: url("images/panel-1-bg.jpg");
-}
-
-.panel-bg-2 {
-  background-image: url("images/panel-2-bg.jpg");
-}
-
-.panel-bg-schedule {
-  background-image: url("images/schedule-bg.jpg");
-}
-
 .radio-compact {
   width: 1.1rem;
   height: 1.1rem;
@@ -220,7 +201,6 @@ body {
 
   .mobile-card-inner {
     padding: 3rem 4rem;
-    background: rgba(252, 251, 250, 0.4);
     border-radius: 0;
     border: none;
     backdrop-filter: none;
@@ -228,8 +208,7 @@ body {
 
   .content-shell {
     padding: 3rem;
-    background: rgba(252, 251, 250, 0.35);
-  }
+    }
 
   .floral-top-bg::after {
     opacity: 0.25;
