@@ -1,7 +1,5 @@
 @font-face {
   font-family: 'Miama Nueva';
-  /* Обязательно проверь расширение файла: .ttf, .otf, .woff или .woff2 */
-  /* Если файл лежит в папке fonts, путь будет таким: */
   src: url('fonts/MiamaNueva.ttf') format('truetype'); 
   font-weight: normal;
   font-style: normal;
@@ -23,9 +21,13 @@ body {
 
 .decorative-script {
   font-family: 'Miama Nueva', cursive;
-  line-height: 1.0;
+  line-height: 1.7; /* Отступы между строк, чтобы буквы не наезжали */
   letter-spacing: 0.015em;
   font-weight: normal;
+}
+
+p.decorative-script {
+  margin-bottom: 1rem; 
 }
 
 .decorative-serif {
@@ -36,7 +38,7 @@ body {
   min-height: 100vh;
 }
 
-/* Базовый слайд: делаем его полностью прозрачным на мобилках */
+/* Базовый слайд */
 .screen-slide {
   width: 100%;
   min-height: 100vh;
@@ -44,14 +46,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 2rem 1rem;
   position: relative;
   isolation: isolate;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.75s ease, transform 0.75s ease;
-  background-color: transparent; /* Убираем плотный фон секций */
+  background-color: transparent;
 }
 
 .screen-slide + .screen-slide {
@@ -63,21 +65,35 @@ body {
   transform: translateY(0);
 }
 
-/* Фикс цветочного фона, чтобы он был нежным и не перекрывал текст */
-.floral-top-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("images/flower-top.jpg");
+/* Фоновые картинки секций (прямые пути) */
+.screen-bg {
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 100% auto;
-  opacity: 0.35; /* Сделали чуть ярче, чтобы цветы со скриншота были отчетливо видны */
-  pointer-events: none;
-  z-index: -1;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: scroll;
 }
 
-/* Мобильная карточка-плашка (делаем ее воздушной и прозрачной) */
+.panel-bg-1 {
+  background-image: url("images/panel-1-bg.jpg");
+}
+
+.panel-bg-2 {
+  background-image: url("images/panel-2-bg.jpg");
+}
+
+.panel-bg-schedule {
+  background-image: url("images/schedule-bg.jpg");
+}
+
+/* Фикс цветочного фона */
+.floral-top-bg {
+  background-image: url("images/flower-top.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
+/* Мобильная карточка-плашка */
 .mobile-card {
   width: min(92vw, 32rem);
   background: transparent;
@@ -86,22 +102,23 @@ body {
   justify-content: center;
 }
 
-/* Внутренняя подложка для текста, чтобы он не сливался с цветами */
+/* Внутренняя подложка для текста */
 .mobile-card-inner {
   width: 100%;
   padding: 1.5rem 1.2rem;
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.65); /* Легкая размытая белая дымка */
-  backdrop-filter: blur(4px);            /* Эффект матового стекла */
+  background: rgba(255, 255, 255, 0.72); /* Сделали более прозрачным, чтобы просвечивал фон */
+  backdrop-filter: blur(4px);            
   -webkit-backdrop-filter: blur(4px);
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
 }
 
 /* Оболочка для первого экрана */
 .content-shell {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 1.5rem;
@@ -117,18 +134,13 @@ body {
 }
 
 .timer-box-olive {
-  /* Твои текущие стили фона, теней и скруглений оставляем */
   background: #7b8e70;
   box-shadow: 0 4px 12px rgba(123, 142, 112, 0.2);
   border-radius: 1rem;
-  
-  /* Добавляем Flexbox для центрирования */
   display: flex;
-  flex-direction: column; /* Ставим элементы друг под другом */
-  justify-content: center; /* Центрируем по вертикали */
-  align-items: center; /* Центрируем по горизонтали */
-  
-  /* Убедись, что у карточки есть минимальная высота, например: */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
   min-height: 80px; 
   padding: 10px;
 }
@@ -136,17 +148,17 @@ body {
 .timer-value {
   font-family: 'Miama Nueva', cursive;
   min-width: 2ch;
-  font-size: 2.8rem; /* Сделали цифры крупнее, так как шрифт тонкий */
+  font-size: 2.8rem; 
   line-height: 1;
-  font-weight: normal; /* Рукописные шрифты лучше смотрятся без жирности */
+  font-weight: normal;
   color: #ffffff;
   font-variant-numeric: tabular-nums;
 }
 
 .timer-label {
   font-family: 'Miama Nueva', cursive;
-  margin-top: -0.2rem; /* Слегка подтянули текст к цифрам */
-  font-size: 1.3rem; /* Увеличили подписи "дней/часов" */
+  margin-top: -0.2rem; 
+  font-size: 1.3rem; 
   letter-spacing: 0.05em;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -187,7 +199,7 @@ body {
   border: 1px solid rgba(123, 142, 112, 0.3);
 }
 
-/* Адаптив под десктопы (компьютеры) */
+/* Адаптив под десктопы */
 @media (min-width: 768px) {
   .screen-slide {
     min-height: 100vh;
@@ -201,6 +213,7 @@ body {
 
   .mobile-card-inner {
     padding: 3rem 4rem;
+    background: rgba(252, 251, 250, 0.4);
     border-radius: 0;
     border: none;
     backdrop-filter: none;
@@ -208,7 +221,8 @@ body {
 
   .content-shell {
     padding: 3rem;
-    }
+    background: rgba(252, 251, 250, 0.35);
+  }
 
   .floral-top-bg::after {
     opacity: 0.25;
@@ -220,11 +234,39 @@ body {
   }
 
   .timer-value {
-    font-size: 2.5rem;
+    font-size: 3.5rem; 
   }
 
   .radio-compact {
     width: 1.4rem;
     height: 1.4rem;
   }
+}
+
+@media (max-width: 767px) {
+
+  .screen-slide {
+    padding: 3rem 1rem;
+  }
+
+  .mobile-card {
+    width: 100%;
+  }
+
+  .mobile-card-inner {
+    border-radius: 28px;
+    padding: 2rem 1.4rem;
+  }
+
+  .content-shell {
+    border-radius: 28px;
+  }
+
+  .panel-bg-1,
+  .panel-bg-2,
+  .panel-bg-schedule {
+    background-position: center center;
+    background-size: cover;
+  }
+
 }
