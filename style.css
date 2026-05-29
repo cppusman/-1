@@ -5,8 +5,7 @@
   font-style: normal;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: "Cormorant Garamond", serif;
@@ -64,7 +63,7 @@ p.decorative-script {
   transform: translateY(0);
 }
 
-/* Фоны секций */
+/* Фоны секций для ДЕСКТОПА */
 .screen-bg {
   background-repeat: no-repeat;
   background-position: center center;
@@ -94,7 +93,7 @@ p.decorative-script {
   background-size: cover;
 }
 
-/* Мобильная карточка-плашка (десктопные настройки) */
+/* Мобильная карточка-плашка (общие стили) */
 .mobile-card {
   width: min(92vw, 32rem);
   background: transparent;
@@ -189,63 +188,7 @@ p.decorative-script {
   padding: 1rem;
 }
 
-/* ========== МОБИЛЬНЫЕ СТИЛИ (исправление фона) ========== */
-@media (max-width: 767px) {
-  .screen-slide {
-    padding: 3rem 1rem;
-  }
-
-  .mobile-card {
-    width: 100%;
-  }
-
-  .mobile-card-inner {
-    border-radius: 28px;
-    padding: 2rem 1.4rem;
-    /* Убираем плотный белый фон и размытие, чтобы картинка просвечивала */
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .content-shell {
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    padding: 2rem 1rem;
-  }
-
-  /* Чтобы текст был контрастным на светлом фоне, добавим тень или сделаем фон темнее — на ваш выбор */
-  .mobile-card-inner p,
-  .mobile-card-inner h1,
-  .mobile-card-inner h2,
-  .mobile-card-inner h3 {
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  }
-
-  /* Если нужно, чтобы кнопки и инпуты были чёткими */
-  .accent-btn {
-    font-size: 1.2rem;
-  }
-
-  .timer-value {
-    font-size: 2.2rem;
-  }
-
-  .timer-label {
-    font-size: 1rem;
-  }
-
-  .radio-compact {
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-}
-
-/* ========== ДЕСКТОПНЫЕ ДОПОЛНЕНИЯ (необязательно) ========== */
+/* ========== ДЕСКТОПНЫЕ ДОПОЛНЕНИЯ (шире 768px) ========== */
 @media (min-width: 768px) {
   .screen-slide {
     min-height: 100vh;
@@ -277,5 +220,74 @@ p.decorative-script {
   .radio-compact {
     width: 1.4rem;
     height: 1.4rem;
+  }
+}
+
+/* ========== МОБИЛЬНЫЕ СТИЛИ (до 767px) ==========
+   Здесь делаем единый фиксированный фон flower-top на body,
+   отключаем фоновые картинки секций и улучшаем читаемость текста
+*/
+@media (max-width: 767px) {
+  /* Единый неподвижный фон для всей страницы на телефонах */
+  body {
+    background-image: url("images/flower-top.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* Отключаем все фоновые картинки у секций, чтобы не перекрывали body */
+  .screen-bg,
+  .panel-bg-1,
+  .panel-bg-2,
+  .panel-bg-schedule,
+  .floral-top-bg {
+    background-image: none !important;
+    background-color: transparent;
+  }
+
+  /* Увеличиваем прозрачность подложек для лучшей читаемости текста */
+  .mobile-card-inner,
+  .content-shell {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  /* Небольшие корректировки отступов и размеров для телефона */
+  .screen-slide {
+    padding: 3rem 1rem;
+  }
+
+  .mobile-card {
+    width: 100%;
+  }
+
+  .mobile-card-inner {
+    border-radius: 28px;
+    padding: 2rem 1.4rem;
+  }
+
+  .content-shell {
+    border-radius: 28px;
+    padding: 2rem 1rem;
+  }
+
+  .timer-value {
+    font-size: 2.2rem;
+  }
+
+  .timer-label {
+    font-size: 1rem;
+  }
+
+  .radio-compact {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .accent-btn {
+    font-size: 1.2rem;
   }
 }
