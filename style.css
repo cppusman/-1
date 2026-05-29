@@ -249,6 +249,8 @@ p.decorative-script {
     padding: 3rem 1rem;
   }
 
+
+
   .mobile-card {
     width: 100%;
   }
@@ -256,10 +258,18 @@ p.decorative-script {
   .mobile-card-inner {
     border-radius: 28px;
     padding: 2rem 1.4rem;
+    /* Убираем плотный фон и размытие */
+    background: rgba(255, 255, 255, 0.3);  /* было 0.72 */
+    backdrop-filter: none;                /* убираем blur */
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .content-shell {
     border-radius: 28px;
+    background: rgba(255, 255, 255, 0.3); /* было 0.72 */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .panel-bg-1,
@@ -268,5 +278,10 @@ p.decorative-script {
     background-position: center center;
     background-size: cover;
   }
+
+
+
+ 
+
 
 }
